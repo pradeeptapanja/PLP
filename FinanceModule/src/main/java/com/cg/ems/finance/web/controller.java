@@ -3,10 +3,9 @@
  */
 package com.cg.ems.finance.web;
 
-import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,13 +32,13 @@ public class controller {
 	@Autowired
 	FinanceUserService financeUserService;
 
-	@GetMapping(value = "/login", produces = "application/json")
+	@GetMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
 	public FinanceUser loginFinanceUser(@RequestParam String userId, String password)
 			throws InvalidFinanceUserLoginCredentialsException {
 		return financeUserService.authenticateFinanceUser(userId, password);
 	}
 
-	@PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
+	@PostMapping(value = "/register", consumes = "application/json", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String registerFinanceUser(@RequestBody FinanceUser newFinanceUser) {
 		return financeUserService.addFinanceUser(newFinanceUser);
 	}

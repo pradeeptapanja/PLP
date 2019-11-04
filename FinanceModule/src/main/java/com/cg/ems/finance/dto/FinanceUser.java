@@ -17,6 +17,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "finance_user")
+
 public class FinanceUser {
 
 	@Id
@@ -30,17 +31,18 @@ public class FinanceUser {
 	private String financeUserName;
 
 	@Column(name = "finance_user_password")
-	//@Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", message = "Invalid id")
+	// @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",
+	// message = "Invalid id")
 	@NotNull
 	private String financeUserPassword;
 
 	@Column(name = "finance_user_email")
-	//@Pattern(regexp = "[\\w_]+@[a-z]{3,20}.[a-z]{2,4}", message = "Invalid id")
+	// @Pattern(regexp = "[\\w_]+@[a-z]{3,20}.[a-z]{2,4}", message = "Invalid id")
 	@NotNull
 	private String financeUserEMail;
 
 	@Column(name = "finance_user_mobile")
-	//@Pattern(regexp = "\\+91[6-9][0-9]{9}", message = "Invalid id")
+	// @Pattern(regexp = "\\+91[6-9][0-9]{9}", message = "Invalid id")
 	@NotNull
 	private String financeUserMobile;
 
