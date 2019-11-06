@@ -4,6 +4,7 @@
 package com.cg.ems.finance.service;
 
 import java.util.Base64;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,5 +65,12 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 			throw new InvalidFinanceUserLoginCredentialsException("Invalid credentials!");
 		}
 	}
+
+	@Override
+	public List<String> getAllUserIds() {
+		return financeUserRepo.getAllUserIds();
+	}
+
+
 
 }

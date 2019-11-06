@@ -22,11 +22,11 @@ public class FinanceUser {
 
 	@Id
 	@Column(name = "finance_user_id")
-	@Pattern(regexp = "FE[A-Z0-9]{5}", message = "Invalid id")
+//	@Pattern(regexp = "FE[A-Z0-9]{5}", message = "Invalid id")
 	private String financeUserId;
 
 	@Column(name = "finance_user_name")
-	@Pattern(regexp = "[A-Z][A-Za-z ]+", message = "Invalid id")
+//	@Pattern(regexp = "[A-Z][A-Za-z ]+", message = "Invalid id")
 	@NotNull
 	private String financeUserName;
 

@@ -3,6 +3,8 @@
  */
 package com.cg.ems.finance.repo;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,5 +29,9 @@ public interface FinanceUserRepo extends JpaRepository<FinanceUser, String> {
 	@Modifying
 	@Query("UPDATE FinanceUser f SET f.financeUserPassword=:newPassword WHERE f.financeUserId=:financeUserId AND f.financeUserPassword=:oldPassword")
 	int updateFinanceUserPassword(String financeUserId, String oldPassword, String newPassword);
+
+	@Query("SELECT financeUserId FROM FinanceUser f")
+	List<String> getAllUserIds();
+	
 
 }

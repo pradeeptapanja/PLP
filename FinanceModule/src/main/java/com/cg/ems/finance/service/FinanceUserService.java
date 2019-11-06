@@ -3,6 +3,8 @@
  */
 package com.cg.ems.finance.service;
 
+import java.util.List;
+
 import com.cg.ems.finance.dto.FinanceUser;
 import com.cg.ems.finance.exception.InvalidFinanceUserLoginCredentialsException;
 
@@ -18,4 +20,7 @@ public interface FinanceUserService {
 
 	int changeFinanceUserPassword(String financeUserId, String oldPassword, String newPassword)
 			throws InvalidFinanceUserLoginCredentialsException;
+
+	List<String> getAllUserIds();
+	
 }
