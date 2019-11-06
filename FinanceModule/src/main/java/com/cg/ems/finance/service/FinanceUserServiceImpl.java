@@ -31,8 +31,8 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 			throws InvalidFinanceUserLoginCredentialsException {
 		FinanceUser loggedInUser = financeUserRepo.validateLoginId(loginId);
 		if (loggedInUser != null) {
-			String encodedPassword = Base64.getEncoder().encodeToString(loginPassword.getBytes());
-			loggedInUser = financeUserRepo.validateLoginPassword(loginId, encodedPassword);
+//			String encodedPassword = Base64.getEncoder().encodeToString(loginPassword.getBytes());
+			loggedInUser = financeUserRepo.validateLoginPassword(loginId, loginPassword);
 			if (loggedInUser != null) {
 				return loggedInUser;
 			} else {
@@ -45,22 +45,22 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 
 	@Override
 	public String addFinanceUser(FinanceUser newFinanceUser) {
-		FinanceUser registerNewFinanceUser = newFinanceUser;
-		Base64.Encoder encoder = Base64.getEncoder();
-		registerNewFinanceUser
-				.setFinanceUserPassword(encoder.encodeToString(newFinanceUser.getFinanceUserPassword().getBytes()));
-		financeUserRepo.save(registerNewFinanceUser);
-		return registerNewFinanceUser.getFinanceUserId();
+//		FinanceUser registerNewFinanceUser = newFinanceUser;
+////		Base64.Encoder encoder = Base64.getEncoder();
+//		registerNewFinanceUser
+//				.setFinanceUserPassword(encoder.encodeToString(newFinanceUser.getFinanceUserPassword().getBytes()));
+		financeUserRepo.save(newFinanceUser);
+		return newFinanceUser.getFinanceUserId();
 	}
 
 	@Override
-	public int changeFinanceUserPassword(String financeUserId, String oldPassword, String newPassword)
+	public FinanceUser changeFinanceUserPassword(String financeUserId, String oldPassword, String newPassword)
 			throws InvalidFinanceUserLoginCredentialsException {
-		String encodedOldPassword = Base64.getEncoder().encodeToString(oldPassword.getBytes());
-		String encodedNewPassword = Base64.getEncoder().encodeToString(newPassword.getBytes());
-		int i = financeUserRepo.updateFinanceUserPassword(financeUserId, encodedOldPassword, encodedNewPassword);
+//		String encodedOldPassword = Base64.getEncoder().encodeToString(oldPassword.getBytes());
+//		String encodedNewPassword = Base64.getEncoder().encodeToString(newPassword.getBytes());
+		int i = financeUserRepo.updateFinanceUserPassword(financeUserId, oldPassword, newPassword);
 		if (i != 0) {
-			return i;
+			return financeUserRepo.validateLoginId(financeUserId);
 		} else {
 			throw new InvalidFinanceUserLoginCredentialsException("Invalid credentials!");
 		}

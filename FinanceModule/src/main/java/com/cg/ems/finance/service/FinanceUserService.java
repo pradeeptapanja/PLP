@@ -18,7 +18,7 @@ public interface FinanceUserService {
 
 	String addFinanceUser(FinanceUser newFinanceUser);
 
-	int changeFinanceUserPassword(String financeUserId, String oldPassword, String newPassword)
+	FinanceUser changeFinanceUserPassword(String financeUserId, String oldPassword, String newPassword)
 			throws InvalidFinanceUserLoginCredentialsException;
 
 	List<String> getAllUserIds();

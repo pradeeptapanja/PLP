@@ -48,8 +48,8 @@ public class controller {
 		return financeUserService.addFinanceUser(newFinanceUser);
 	}
 
-	@PutMapping(value = "/update-password/{userId}/{oldPassword}/{newPassword}")
-	public int updateFinanceUserPassword(@PathVariable String userId, @PathVariable String oldPassword, @PathVariable String newPassword)
+	@GetMapping(value = "/update-password")
+	public FinanceUser updateFinanceUserPassword(@RequestParam String userId, String oldPassword, String newPassword)
 			throws InvalidFinanceUserLoginCredentialsException {
 		return financeUserService.changeFinanceUserPassword(userId, oldPassword, newPassword);
 	}
