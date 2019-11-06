@@ -1,0 +1,111 @@
+<!-- <div class="container">
+  <h2>Register Finance User</h2>
+  <form (ngSubmit)="registerFinanceUser()" #addForm="ngForm">
+    <div class="container" style="padding: 8px;">
+      <div class="form-group"
+          style=" width: 1000px; opacity: 0.97; text-align: justify; background-color:greenyellow; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: larger;">
+          <table style="color: rgb(59, 10, 236); border-collapse: separate; " class="table table-hover">
+            <tr>
+              <td width="25%">Finance User ID : </td>
+              <td>
+              <input type="text" placeholder="Enter Finance User ID" [(ngModel)]=finance.financeUserId name="financeUserId" #name=ngModel focused = false required pattern="[F]{2}[0-9]{5}" class="form-control" id="financeUserId" required>
+              </td>
+            </tr>
+            
+            <tr>
+              <td width="25%">Name : </td>
+              <td>
+              <input type="text" placeholder="Enter Name" [(ngModel)]=finance.financeUserName name="financeUserName" #name=ngModel focused = false required pattern="[A-Za-z]{3,}" class="form-control" id="financeUserName" required>
+              </td>
+            </tr>
+          
+                  
+          <tr>
+            <td width ="25%">Email id : </td>
+            <td><input type="email" placeholder="abc@xyz.com" [(ngModel)]=finance.financeUserEMail name="financeUserEMail" #email=ngModel required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" class="form-control" id="financeUserEMail" required>
+            </td>
+        
+          </tr>
+    
+            
+              <tr>
+                <td width ="25%">Mobile No. : </td>
+                <td><input type="email" placeholder="abc@xyz.com" [(ngModel)]=employee.email name="email" #email=ngModel required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" class="form-control" id="email" required>
+                </td>
+            
+            </tr>
+    
+            <tr>
+              <td width ="25%">Password : </td>
+              <td>
+                <input type="password" placeholder="Enter password" [(ngModel)]=finance.financeUserPassword name="financeUserPassword" #password=ngModel class="form-control" id="financeUserPassword"  minlength="5" maxlength="50" required>
+                
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><ng2-password-strength-bar [passwordToCheck]="finance.financeUserPassword" [barLabel]="barLabel" [barColors]="myColors"></ng2-password-strength-bar></td>
+            </tr>
+          <tr><td colspan="2" align="center">  
+          <button type="submit" [disabled]="!addForm.valid" class="btn btn-info">Register Finance User</button>
+          </td></tr>
+           </table>
+       </div>
+    </div>
+    </form>
+    </div> -->
+    
+    <div class="container">
+      <h2>Register Finance User</h2>
+    <form (ngSubmit)="registerFinanceUser()" #addForm="ngForm">
+      <table class="table table-hover">
+        <thead><tr><th colspan="2">Add Customer</th></tr></thead>
+
+        <tr><td width="15%"><label for="financeUserId">Finance User Id</label></td>
+          <td><input name="financeUserId" [(ngModel)]=finance.financeUserId #userid=ngModel required pattern="FE[A-Z0-9]{5}" placeholder="Enter User id" id="financeUserId" required>
+           <span *ngIf="userid.touched && userid.invalid && 
+           (userid.errors.required || userid.errors.pattern)" class="alert-warning">
+            Invalid user id or user id cannot be empty!
+          </span>
+      </td></tr>
+
+      <tr><td width="15%"><label for="financeUserName">Finance User Name</label></td>
+        <td><input name="financeUserName" [(ngModel)]=finance.financeUserName #name=ngModel required pattern="[A-Za-z]{3,}" placeholder="Enter User Name" id="financeUserName" required>
+         <span *ngIf="name.touched && name.invalid && 
+         (name.errors.required || name.errors.pattern)" class="alert-warning">
+          Invalid user name or user name cannot be empty!
+        </span>
+    </td></tr>
+
+    <tr><td width="15%"><label for="financeUserPassword">Finance User Password</label></td>
+      <td><input name="financeUserPassword" [(ngModel)]=finance.financeUserPassword #password=ngModel required pattern="[A-Za-z]{3,}" placeholder="Enter User Password" id="financeUserPassword" minlength="5" maxlength="50" required>
+       <span *ngIf="password.touched && password.invalid && 
+       (password.errors.required || password.errors.pattern)" class="alert-warning">
+        Invalid user password or user password cannot be empty!
+      </span>
+  </td></tr>
+      
+  <tr><td width="15%"></td>
+    <td><ng2-password-strength-bar [passwordToCheck]="finance.financeUserPassword" [barLabel]="barLabel" [barColors]="myColors"></ng2-password-strength-bar></td>
+  </tr>
+    
+        <tr><td><label for="financeUserMobile">Mobile No</label></td>
+          <td><input name="financeUserMobile" [(ngModel)]="finance.financeUserMobile" #mobile=ngModel required pattern="[7-9][0-9]{9}" placeholder="Enter Mobile No">
+          <span *ngIf="mobile.touched && mobile.invalid && 
+          (mobile.errors.required || mobile.errors.pattern)" class="alert-warning">
+            Invalid Mobile No. or mobile no cannot be empty!
+          </span>
+        </td></tr>
+      
+        <tr><td><label for="financeUserEMail">Email ID</label></td>
+          <td><input name="financeUserEMail" [(ngModel)]="finance.financeUserEMail" #email=ngModel type="email" required pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" placeholder="Enter valid email" />
+            <span *ngIf="email.touched && email.invalid && 
+            (email.errors.required || email.errors.pattern)" class="alert-warning">
+              Invalid Email ID or email cannot be empty!
+            </span>
+          </td></tr>
+        <tr><th colspan="2"><button type="submit" [disabled]="!addForm.valid" class="btn btn-info">Add User</button>
+        </th></tr>
+      </table>
+      </form>
+    </div>
