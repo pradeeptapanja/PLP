@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClaimModel } from '../model/claim';
 import { FinanceuserService } from '../financeuser/financeuser.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-claim',
@@ -10,25 +11,30 @@ import { Observable } from 'rxjs';
 })
 export class ClaimComponent implements OnInit {
 
-  claims :Observable<ClaimModel[]>;
-  constructor() {
-    // this.claims = new ClaimModel[];  private service : FinanceuserService
+  claims:ClaimModel[];
+  claim:ClaimModel;
+  constructor(private service : FinanceuserService, private route:Router) {
+     this.claim = new ClaimModel;  
   }
 
 
   ngOnInit() {
-   //let list = this.service.listClaims().subscribe(data=>this.claims=data);
+   this.service.listClaims().subscribe(data=>this.claims=data);
   }
 
-//   delete(index: number){
-//     var ans = confirm("are you sure you want to delete?")
-//     if(ans){
-//       this.service.deleteCustomer(index); //delete from service
-//     }
-//   }
+  approveClaim(clm: ClaimModel){
+    // console.log(blogId)
+    let claimId = clm.claimId;
+    this.service.approveClaims(claimId).subscribe(val => {
+      clm.status = 'Approved';
+    });
+  }
+  rejectClaim(clm: ClaimModel){
 
-//   sortByName(){
-//     this.customers = this.service.sortCustomerbyName();
-//   }
+    let claimId = clm.claimId;
+    this.service.rejectClaims(claimId).subscribe(val => {
+      clm.status = 'Rejected';
+    });
+  }
 
 }

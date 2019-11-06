@@ -43,11 +43,18 @@ export class FinanceuserService {
     form.append("userId",userId);
     form.append("oldPassword",oldPassword);
     form.append("newPassword",newPassword);
-    return this.http.post(this.baseUrl+"/update-password/?userId="+userId+"&oldPassword="+oldPassword+"&newPassword="+newPassword,form);
+    return this.http.get(this.baseUrl+"/update-password/?userId="+sessionStorage.getItem('financeUserId')+"&oldPassword="+oldPassword+"&newPassword="+newPassword);
   }
 
-  listClaims(): Observable<ClaimModel>{
-    return this.http.get<ClaimModel>(this.baseUrl+"/getclaims");
+  listClaims(){
+    return this.http.get<ClaimModel[]>(this.baseUrl+"/getclaims");
   }
 
+  approveClaims(claimId:number){
+    return this.http.put<number>("http://localhost:"+claimId,null);
+  }
+
+  rejectClaims(claimId:number){
+    return this.http.put<number>("http://localhost:"+claimId,null);
+  }
 }
