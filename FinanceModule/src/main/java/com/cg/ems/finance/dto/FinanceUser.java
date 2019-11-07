@@ -11,8 +11,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * @author admin
- *
+ * @author Panja
+ * @version 1.0
  */
 
 @Entity
@@ -22,27 +22,21 @@ public class FinanceUser {
 
 	@Id
 	@Column(name = "finance_user_id")
-//	@Pattern(regexp = "FE[A-Z0-9]{5}", message = "Invalid id")
 	private String financeUserId;
 
 	@Column(name = "finance_user_name")
-//	@Pattern(regexp = "[A-Z][A-Za-z ]+", message = "Invalid id")
 	@NotNull
 	private String financeUserName;
 
 	@Column(name = "finance_user_password")
-	// @Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})",
-	// message = "Invalid id")
 	@NotNull
 	private String financeUserPassword;
 
 	@Column(name = "finance_user_email")
-	// @Pattern(regexp = "[\\w_]+@[a-z]{3,20}.[a-z]{2,4}", message = "Invalid id")
 	@NotNull
 	private String financeUserEMail;
 
 	@Column(name = "finance_user_mobile")
-	// @Pattern(regexp = "\\+91[6-9][0-9]{9}", message = "Invalid id")
 	@NotNull
 	private String financeUserMobile;
 
@@ -117,7 +111,7 @@ public class FinanceUser {
 	}
 
 	/**
-	 * 
+	 * default constructor
 	 */
 	public FinanceUser() {
 		// TODO Auto-generated constructor stub

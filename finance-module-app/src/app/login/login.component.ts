@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   financeUserId : string;
   financeUserPassword : string;
   finance: finance;
-  appComponent : AppComponent;
-  constructor(private service : FinanceuserService, private router : Router) { }
+  
+  constructor(private appComponent : AppComponent, private service : FinanceuserService, private router : Router) { }
 
   ngOnInit() {
     this.finance = new finance();
@@ -24,12 +24,13 @@ export class LoginComponent implements OnInit {
   loginFinanceUser(){
     this.service.loginFinanceUser(this.financeUserId, this.financeUserPassword).subscribe(data => {
       this.finance = data;
+      sessionStorage.setItem('financeUserName', String(this.finance.financeUserName));
       sessionStorage.setItem('financeUserId', String(this.finance.financeUserId));
       sessionStorage.setItem('financeUserPassword',String(this.finance.financeUserPassword));
       sessionStorage.setItem('status','true');
       this.service.saveFinanceUser(this.finance);
       if(this.finance.financeUserId == null)
-        this.router.navigate(['login']);
+        this.router.navigate(['register']);
       else{
       this.router.navigate(['claim']);
       alert("Login Successful");

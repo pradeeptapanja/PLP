@@ -6,11 +6,9 @@
       <a class="navbar-brand">Finance User Service</a>
     </div>
     <ul class="nav navbar-nav">
-      
         <li *ngIf = "!flag"><a [routerLink]="['register']">Register</a></li>
         <li *ngIf = "!flag"><a [routerLink]="['login']">Login</a></li>
         <li *ngIf = "!flag"><a [routerLink]="['claims']">Claims</a></li>
-      
         <li *ngIf = "!flag"><a [routerLink]="['update']">Change Password</a></li>
         <li *ngIf = "!flag"><a [routerLink]="['logout']">Logout</a></li>
     </ul>

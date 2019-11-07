@@ -1,11 +1,11 @@
 /**
- * 
+ * user defined exception class
  */
 package com.cg.ems.finance.exception;
 
 /**
- * @author admin
- *
+ * @author Panja
+ * @version 1.0
  */
 public class InvalidFinanceUserLoginCredentialsException extends Exception {
 
@@ -20,7 +20,7 @@ public class InvalidFinanceUserLoginCredentialsException extends Exception {
 	}
 
 	/**
-	 * 
+	 * Default constructor of InvalidFinanceUserLoginCredentialsException class
 	 */
 	public InvalidFinanceUserLoginCredentialsException() {
 		// TODO Auto-generated constructor stub
