@@ -8,27 +8,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
-  userId : string;
-  oldPassword : string;
-  newPassword : string;
-  finance : string
-  constructor(private service : FinanceuserService, private router : Router) { }
+  userId: string;
+  oldPassword: string;
+  newPassword: string;
+  finance: string
+  constructor(private service: FinanceuserService, private router: Router) { }
 
   ngOnInit() {
-    if(sessionStorage.getItem('status')==='false'){
+    if (sessionStorage.getItem('status') === 'false') {
       this.router.navigate(['login']);
     }
     this.userId = sessionStorage.getItem('financeUserId');
   }
 
-  changePassword(){
+  changePassword() {
 
-    let fin = this.service.updateFinanceUserPassword(this.userId, this.oldPassword, this.newPassword).subscribe(data => this.finance, error => alert("Password could not be changed!"));
-    if(fin != null){
-      alert("Password changed successfully!");
-      this.router.navigate(['claim']);
-    }else{
-      alert("Password could not be changed!");
+    let fin = this.service.updateFinanceUserPassword(this.oldPassword, this.newPassword).subscribe(data => {
+      this.finance = data;
+      if (this.finance != null) {
+        alert("Password changed successfully!");
+        this.router.navigate(['claim']);
+      }
     }
+    );
   }
 }

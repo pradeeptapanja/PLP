@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+  <tr>
+    <th>Claim ID</th>
+    <th>Employee ID</th>
+    <th>Project ID</th>
+    <th>Client ID</th>
+    <th>Expense Code</th>
+    <th>Amount</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Expense Description</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor="let claim of claims; let i of index">
+    <td>{{claim.claimId}}</td>
+    <td>{{claim.employeeId}}</td>
+    <td>{{claim.projectId}}</td>
+    <td>{{claim.clientId}}</td>
+    <td>{{claim.expenseId}}</td>
+    <td>{{claim.amount}}</td>
+    <td>{{claim.startDate}}</td>
+    <td>{{claim.endDate}}</td>
+    <td>{{claim.description}}</td>
+    <td>{{claim.status}}</td>
+    <td><button [disabled]="claim.status==='Approved' || claim.status==='Rejected'" class="btn btn-info" (click)="approveClaim(i)">Approve</button></td>
+    <td><button [disabled]="claim.status==='Approved' || claim.status==='Rejected'" class="btn btn-info" (click)="rejectClaim(i)">Reject</button></td>
+    </tr>
+
+</table>
