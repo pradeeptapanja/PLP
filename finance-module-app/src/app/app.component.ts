@@ -15,11 +15,11 @@ export class AppComponent {
   ngOnInIt(){
     if(sessionStorage.getItem('status')=='true'){
       this.flag = true;
-      // this.name = sessionStorage.getItem('financeUserName');
+      //this.name = sessionStorage.getItem('financeUserName');
     }
     else{
       this.flag = false;
-      // this.name = "User";
+      //this.name = "User";
     }
   }
   logout(){

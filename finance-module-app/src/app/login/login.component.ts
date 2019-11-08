@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
       else{
       this.router.navigate(['claim']);
       alert("Login Successful");
+      this.appComponent.tabFlag();
       }
       error => alert("Employee not logged in!");
     });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FinanceuserService } from '../financeuser/financeuser.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-logout',
@@ -9,10 +10,12 @@ import { Router } from '@angular/router';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private financeService : FinanceuserService, private router : Router) { }
+  constructor(private appComponent : AppComponent,private financeService : FinanceuserService, private router : Router) { }
 
   ngOnInit() {
-    this.financeService.deleteEmployee();
+    this.financeService.deleteFinanceUser();
+    this.appComponent.logout();
+    this.appComponent.tabFlag();
     this.router.navigate(['login']);
   }
 

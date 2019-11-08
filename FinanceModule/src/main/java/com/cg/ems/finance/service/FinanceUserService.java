@@ -46,6 +46,24 @@ public interface FinanceUserService {
 			throws InvalidFinanceUserLoginCredentialsException;
 
 	/**
+	 * method for updating user mobile
+	 * 
+	 * @param financeUserId
+	 * @param newMobile
+	 * @return
+	 */
+	int changeFinanceUserMobile(String financeUserId, String newMobile);
+	
+	/**
+	 * method for updating user email
+	 * 
+	 * @param financeUserId
+	 * @param newEMail
+	 * @return
+	 */
+	int changeFinanceUserEMail(String financeUserId, String newEMail);
+	
+	/**
 	 * method for fetching all finance user ids
 	 * 
 	 * @return List<String>

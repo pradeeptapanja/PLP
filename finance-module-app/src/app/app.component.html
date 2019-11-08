@@ -8,9 +8,11 @@
     <ul class="nav navbar-nav">
         <li *ngIf = "!flag"><a [routerLink]="['register']">Register</a></li>
         <li *ngIf = "!flag"><a [routerLink]="['login']">Login</a></li>
-        <li *ngIf = "!flag"><a [routerLink]="['claims']">Claims</a></li>
-        <li *ngIf = "!flag"><a [routerLink]="['update']">Change Password</a></li>
-        <li *ngIf = "!flag"><a [routerLink]="['logout']">Logout</a></li>
+        <li *ngIf = "flag"><a [routerLink]="['claim']">Claims</a></li>
+        <li *ngIf = "flag"><a [routerLink]="['update']">Change Password</a></li>
+        <li *ngIf = "flag"><a [routerLink]="['mobile']">Change Mobile</a></li>
+        <li *ngIf = "flag"><a [routerLink]="['email']">Change Email</a></li>
+        <li *ngIf = "flag"><a [routerLink]="['logout']">Logout</a></li>
     </ul>
   </div>
 </nav>

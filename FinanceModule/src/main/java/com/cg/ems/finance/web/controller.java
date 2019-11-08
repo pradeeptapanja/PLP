@@ -95,6 +95,36 @@ public class controller {
 		financeUserControllerLogger.info("requested change password method by user id: " + userId);
 		return financeUserService.changeFinanceUserPassword(userId, oldPassword, newPassword);
 	}
+	
+	/**
+	 * Method for accepting the client request for changing user mobile
+	 * and invoking service layer method to perform the operation
+	 * 
+	 * URL: http://localhost:7100/finance-team/update-mobile/{financeUserId}/{mobile}
+	 * @param financeUserId
+	 * @param mobile
+	 * @return int
+	 */
+	@PutMapping(value = "/update-mobile/{financeUserId}/{mobile}")
+	public int updateMobile(@PathVariable String financeUserId, @PathVariable String mobile) {
+		financeUserControllerLogger.info("requested change mobile method by user id: " + financeUserId);
+		return financeUserService.changeFinanceUserMobile(financeUserId, mobile);
+	}
+	
+	/**
+	 *  Method for accepting the client request for changing user email
+	 * and invoking service layer method to perform the operation
+	 * 
+	 * URL: http://localhost:7100/finance-team/update-mobile/{financeUserId}/{email}
+	 * @param financeUserId
+	 * @param email
+	 * @return int
+	 */
+	@PutMapping(value = "/update-email/{financeUserId}/{email}")
+	public int updateEMail(@PathVariable String financeUserId, @PathVariable String email) {
+		financeUserControllerLogger.info("requested change email method by user id: " + financeUserId);
+		return financeUserService.changeFinanceUserEMail(financeUserId, email);
+	}
 
 	/**
 	 * Method for accepting the client request for fetching all finance user ids

@@ -1,3 +1,8 @@
+<div>
+ <h2 class="text-secondary text-center">{{title}}</h2> 
+<hr />
+</div>
+<div>
 <table class="table table-bordered">
   <tr>
     <th>Claim ID</th>
@@ -7,11 +12,11 @@
     <th>Expense Code</th>
     <th>Amount</th>
     <th>Start Date</th>
-    <th>End Date</th>
     <th>Expense Description</th>
     <th>Status</th>
+    <th colspan="2">Approve/Reject</th>
   </tr>
-  <tr *ngFor="let claim of claims; let i of index">
+  <tr *ngFor="let claim of claims | paginate:{ itemsPerPage: 3, currentPage: p}; let i of index">
     <td>{{claim.claimId}}</td>
     <td>{{claim.employeeId}}</td>
     <td>{{claim.projectId}}</td>
@@ -19,11 +24,15 @@
     <td>{{claim.expenseId}}</td>
     <td>{{claim.amount}}</td>
     <td>{{claim.startDate}}</td>
-    <td>{{claim.endDate}}</td>
     <td>{{claim.description}}</td>
     <td>{{claim.status}}</td>
-    <td><button [disabled]="claim.status==='Approved' || claim.status==='Rejected'" class="btn btn-info" (click)="approveClaim(i)">Approve</button></td>
-    <td><button [disabled]="claim.status==='Approved' || claim.status==='Rejected'" class="btn btn-info" (click)="rejectClaim(i)">Reject</button></td>
+    <td><button [disabled]="claim.status==='Approved' || claim.status==='Rejected'" class="btn btn-info" (click)="approveClaim(i)">Approve</button>
+    <button [disabled]="claim.status==='Approved' || claim.status==='Rejected'" class="btn btn-info" (click)="rejectClaim(i)">Reject</button></td>
     </tr>
 
 </table>
+</div>
+
+<div class = "text-right">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

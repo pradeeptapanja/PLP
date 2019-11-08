@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./claim.component.css']
 })
 export class ClaimComponent implements OnInit {
-
+  title = 'List of Claims';
   claims:ClaimModel[];
   claim:ClaimModel;
+  p: Number = 1;
+  count : Number = 3;
   constructor(private service : FinanceuserService, private route:Router) {
      this.claim = new ClaimModel;  
   }

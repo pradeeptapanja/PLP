@@ -50,6 +50,26 @@ public interface FinanceUserRepo extends JpaRepository<FinanceUser, String> {
 	int updateFinanceUserPassword(String financeUserId, String oldPassword, String newPassword);
 
 	/**
+	 * method with custom query for updating user mobile
+	 * @param financeUserId
+	 * @param newMobile
+	 * @return int
+	 */
+	@Modifying
+	@Query("UPDATE FinanceUser f SET f.financeUserMobile=:newMobile WHERE f.financeUserId=:financeUserId")
+	int updateFinanceUserMobile(String financeUserId, String newMobile);
+
+	/**
+	 * method with custom query for updating user email
+	 * @param financeUserId
+	 * @param newEMail
+	 * @return int
+	 */
+	@Modifying
+	@Query("UPDATE FinanceUser f SET f.financeUserEMail=:newEMail WHERE f.financeUserId=:financeUserId")
+	int updateFinanceUserEMail(String financeUserId, String newEMail);
+
+	/**
 	 * method with custom query for fetching all finance user ids
 	 * @return List string
 	 */

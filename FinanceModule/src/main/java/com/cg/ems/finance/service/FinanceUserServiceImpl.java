@@ -90,10 +90,29 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 	}
 
 	/**
+	 * overridden method of service interface for updating user mobile
+	 */
+	@Override
+	public int changeFinanceUserMobile(String financeUserId, String newMobile) {
+		financeUserServiceLogger.info("Mobile no. changed successfully for user id: " + financeUserId);
+		return financeUserRepo.updateFinanceUserMobile(financeUserId, newMobile);
+	}
+
+	/**
+	 * overridden method of service interface for updating user email
+	 */
+	@Override
+	public int changeFinanceUserEMail(String financeUserId, String newEMail) {
+		financeUserServiceLogger.info("E-mail id changed successfully for user id: " + financeUserId);
+		return financeUserRepo.updateFinanceUserEMail(financeUserId, newEMail);
+	}
+
+	/**
 	 * overridden method of service interface for fetching all finance user ids
 	 */
 	@Override
 	public List<String> getAllUserIds() {
+		financeUserServiceLogger.info("List of all finance user ids fetched");
 		return financeUserRepo.getAllUserIds();
 	}
 
@@ -103,6 +122,7 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 	 */
 	@Override
 	public List<ExpenseClaim> getAllClaims() {
+		financeUserServiceLogger.info("List of all claims fetched");
 		return financeUserRepo.getAllClaims();
 	}
 
@@ -112,6 +132,7 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 	@Override
 	public int approveClaim(int claimId) {
 		String status = "Approved";
+		financeUserServiceLogger.info("Claim approved successfully for claim id: " + claimId);
 		return financeUserRepo.updateClaim(status, claimId);
 	}
 
@@ -121,6 +142,7 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 	@Override
 	public int rejectClaim(int claimId) {
 		String status = "Rejected";
+		financeUserServiceLogger.info("Claim rejected successfully for claim id: " + claimId);
 		return financeUserRepo.updateClaim(status, claimId);
 	}
 

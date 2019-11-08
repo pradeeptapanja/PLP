@@ -24,7 +24,7 @@ export class FinanceuserService {
     console.log(sessionStorage);
   }
 
-  deleteEmployee() {
+  deleteFinanceUser() {
     console.log("Logged out successfully!")
     this.fin = null;
     alert("Logged out!");
@@ -48,6 +48,14 @@ export class FinanceuserService {
       return null;
     }
   }
+
+  updateFinanceUserEmail(email: string): Observable<any> {
+      return this.http.put<number>(this.baseUrl + "/update-email/" + sessionStorage.getItem('financeUserId') + "/" + email, null);
+  }
+
+  updateFinanceUserMobile(mobile: string): Observable<any> {
+    return this.http.put<number>(this.baseUrl + "/update-mobile/" + sessionStorage.getItem('financeUserId') + "/" + mobile, null);
+}
 
   listClaims() {
     return this.http.get<ClaimModel[]>(this.baseUrl + "/getclaims");

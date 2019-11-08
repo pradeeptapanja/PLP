@@ -14,6 +14,8 @@ import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ClaimComponent } from './claim/claim.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UpdateMobileComponent } from './update-mobile/update-mobile.component';
+import { UpdateEmailComponent } from './update-email/update-email.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LogoutComponent } from './logout/logout.component';
     UpdateComponent,
     LoginComponent,
     ClaimComponent,
-    LogoutComponent
+    LogoutComponent,
+    UpdateMobileComponent,
+    UpdateEmailComponent
   ],
   imports: [
     BrowserModule,
