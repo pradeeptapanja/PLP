@@ -30,7 +30,7 @@
     </td></tr>
 
     <tr><td width="15%"><label for="financeUserPassword">Finance User Password</label></td>
-      <td><input name="financeUserPassword" [(ngModel)]=finance.financeUserPassword #password=ngModel required pattern="[A-Za-z0-9]{3,}" placeholder="letters and numbers,min 5" id="financeUserPassword" minlength="5" maxlength="50" required>
+      <td><input type="password" name="financeUserPassword" [(ngModel)]=finance.financeUserPassword #password=ngModel required pattern="[A-Za-z0-9]{3,}" placeholder="letters and numbers,min 5" id="financeUserPassword" minlength="5" maxlength="50" required>
        <span *ngIf="password.touched && password.invalid && 
        (password.errors.required || password.errors.pattern)" class="alert-warning">
         Invalid user password or user password cannot be empty!

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cg.ems.finance.dto.ExpenseClaim;
 import com.cg.ems.finance.dto.FinanceUser;
 import com.cg.ems.finance.exception.InvalidFinanceUserLoginCredentialsException;
+import com.cg.ems.finance.exception.userIdExistsException;
 import com.cg.ems.finance.repo.FinanceUserRepo;
 
 /**
@@ -64,12 +65,19 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 
 	/**
 	 * overridden method of service interface for adding new finance user
+	 * 
+	 * @throws userIdExistsException
 	 */
 	@Override
-	public String addFinanceUser(FinanceUser newFinanceUser) {
-		financeUserRepo.save(newFinanceUser);
-		financeUserServiceLogger.info("user registered with user id: " + newFinanceUser.getFinanceUserId());
-		return newFinanceUser.getFinanceUserId();
+	public String addFinanceUser(FinanceUser newFinanceUser) throws userIdExistsException {
+		if (financeUserRepo.validateLoginId(newFinanceUser.getFinanceUserId()) != null) {
+			throw new userIdExistsException("User Id already exists!");
+			
+		} else {
+			financeUserRepo.save(newFinanceUser);
+			financeUserServiceLogger.info("user registered with user id: " + newFinanceUser.getFinanceUserId());
+			return newFinanceUser.getFinanceUserId();
+		}
 	}
 
 	/**
@@ -142,7 +150,7 @@ public class FinanceUserServiceImpl implements FinanceUserService {
 	@Override
 	public int rejectClaim(int claimId) {
 		String status = "Rejected";
-		financeUserServiceLogger.info("Claim rejected successfully for claim id: " + claimId);
+		financeUserServiceLogger.info("Claim rejected                successfully for claim id: " + claimId);
 		return financeUserRepo.updateClaim(status, claimId);
 	}
 

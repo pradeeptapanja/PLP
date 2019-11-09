@@ -8,6 +8,7 @@ import java.util.List;
 import com.cg.ems.finance.dto.ExpenseClaim;
 import com.cg.ems.finance.dto.FinanceUser;
 import com.cg.ems.finance.exception.InvalidFinanceUserLoginCredentialsException;
+import com.cg.ems.finance.exception.userIdExistsException;
 
 /**
  * @author Panja
@@ -30,8 +31,9 @@ public interface FinanceUserService {
 	 * 
 	 * @param newFinanceUser
 	 * @return String
+	 * @throws userIdExistsException 
 	 */
-	String addFinanceUser(FinanceUser newFinanceUser);
+	String addFinanceUser(FinanceUser newFinanceUser) throws userIdExistsException;
 
 	/**
 	 * method for updating user password

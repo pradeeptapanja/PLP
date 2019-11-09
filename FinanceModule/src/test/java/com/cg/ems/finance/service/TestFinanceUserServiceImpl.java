@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.cg.ems.finance.dto.ExpenseClaim;
 import com.cg.ems.finance.dto.FinanceUser;
 import com.cg.ems.finance.exception.InvalidFinanceUserLoginCredentialsException;
+import com.cg.ems.finance.exception.userIdExistsException;
 
 /**
  * @author Panja
@@ -61,15 +62,15 @@ public class TestFinanceUserServiceImpl {
 	}
 
 	@Test
-	public void testRegister() {
+	public void testRegister() throws userIdExistsException {
 		String testUser = service.addFinanceUser(user);
 		assertTrue(testUser.equals(user.getFinanceUserId()));
 	}
 
-	@Test
-	public void testFailRegister() {
+	@Test (expected = userIdExistsException.class)
+	public void testFailRegister() throws userIdExistsException {
 		String testUser = service.addFinanceUser(user);
-		assertFalse(testUser.equals("FE123456"));
+		assertTrue(testUser.equals("FE12345"));
 	}
 
 	@Test

@@ -16,6 +16,8 @@ import { ClaimComponent } from './claim/claim.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UpdateMobileComponent } from './update-mobile/update-mobile.component';
 import { UpdateEmailComponent } from './update-email/update-email.component';
+import { UpdateDetailsComponent } from './update-details/update-details.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { UpdateEmailComponent } from './update-email/update-email.component';
     ClaimComponent,
     LogoutComponent,
     UpdateMobileComponent,
-    UpdateEmailComponent
+    UpdateEmailComponent,
+    UpdateDetailsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

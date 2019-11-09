@@ -7,8 +7,12 @@ package com.cg.ems.finance.web;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.ems.finance.dto.ExpenseClaim;
 import com.cg.ems.finance.dto.FinanceUser;
 import com.cg.ems.finance.exception.InvalidFinanceUserLoginCredentialsException;
+import com.cg.ems.finance.exception.userIdExistsException;
 import com.cg.ems.finance.service.FinanceUserService;
-import com.cg.ems.finance.service.FinanceUserServiceImpl;
 
 /**
  * @author Panja
@@ -35,10 +39,12 @@ import com.cg.ems.finance.service.FinanceUserServiceImpl;
 @RequestMapping("/finance-team")
 public class controller {
 
+//	private static final Logger financeUserControllerLogger = LoggerFactory.getLogger(controller.class);
+
 	static Logger financeUserControllerLogger;
 
 	static {
-		financeUserControllerLogger = Logger.getLogger(FinanceUserServiceImpl.class);
+		financeUserControllerLogger = Logger.getLogger(controller.class);
 	}
 	
 	/**
@@ -71,11 +77,20 @@ public class controller {
 	 * URL: http://localhost:7100/finance-team/register
 	 * @param newFinanceUser
 	 * @return String
+	 * @throws userIdExistsException 
 	 */
 	@PostMapping(value = "/register", consumes = "application/json", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String registerFinanceUser(@RequestBody FinanceUser newFinanceUser) {
+	public ResponseEntity<String> registerFinanceUser(@RequestBody FinanceUser newFinanceUser) throws userIdExistsException {
 		financeUserControllerLogger.info("requested register new member method by user id: " + newFinanceUser.getFinanceUserId());
-		return financeUserService.addFinanceUser(newFinanceUser);
+		String id = financeUserService.addFinanceUser(newFinanceUser);
+		if(id == null) {
+			financeUserControllerLogger.error("New user not registered");
+			return new ResponseEntity<String>("Finance user Not Added.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		else {
+			financeUserControllerLogger.info("user registered successfully with user id: " + id);
+			return new ResponseEntity<String>(id, HttpStatus.OK);
+		}
 	}
 
 	/**

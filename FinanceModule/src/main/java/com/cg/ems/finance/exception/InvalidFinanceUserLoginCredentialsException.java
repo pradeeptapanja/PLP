@@ -1,5 +1,5 @@
 /**
- * user defined exception class
+ * user defined exception class for invalid login id
  */
 package com.cg.ems.finance.exception;
 

@@ -28,19 +28,20 @@ export class RegisterComponent implements OnInit {
 
   registerFinanceUser() {
     this.financeService.createFinanceUser(this.finance)
-      .subscribe(data => this.fin, error => console.log(error));
-    //this.employee = new Employee();
-    //this.toastr.success('Employee Added Successfully!', 'Congratulations!');
-            //this.router.navigate(['/login']);
-            //this.login.ngOnInit();
-        if(this.fin!=null){
-            alert("Employee successfully registered!");
-            this.router.navigate(['login']);
-        }else{
-          alert("Employee could not be registered!");
+      .subscribe(data => 
+        this.fin, error => console.log(error));
+      // {
+      //   this.fin = data;
+        if(this.fin == null)
           this.router.navigate(['register']);
+        else{
+            this.router.navigate(['login']);
+            alert("Registered Successfully");
         }
-  }
+    }
+    //);
+    
+  
 
   onSubmit() {
     this.submitted = true;

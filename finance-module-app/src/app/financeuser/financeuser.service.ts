@@ -29,9 +29,9 @@ export class FinanceuserService {
     this.fin = null;
     alert("Logged out!");
   }
-
-  createFinanceUser(finance: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + '/register', finance);
+  
+  createFinanceUser(finance: Object): Observable<finance> {
+    return this.http.post<finance>(`${this.baseUrl}` + '/register', finance);
   }
 
   loginFinanceUser(userId: string, password: string): Observable<any> {

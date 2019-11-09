@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FinanceuserService } from '../financeuser/financeuser.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-update-email',
   templateUrl: './update-email.component.html',
@@ -11,7 +12,9 @@ export class UpdateEmailComponent implements OnInit {
 
   userId: string;
   email: string;
-  finance: string
+  finance: string;
+
+ 
 
   constructor(private service: FinanceuserService, private router: Router) { }
 
@@ -20,8 +23,10 @@ export class UpdateEmailComponent implements OnInit {
       this.router.navigate(['login']);
     }
     this.userId = sessionStorage.getItem('financeUserId');
+
   }
 
+  
   changeEmail() {
 
     let fin = this.service.updateFinanceUserEmail(this.email).subscribe(data => {
